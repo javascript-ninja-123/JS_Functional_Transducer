@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "crocks": "^0.9.0"
+    "crocks": "^0.9.0",
+    "uniqid": "^4.1.1"
   }
 }

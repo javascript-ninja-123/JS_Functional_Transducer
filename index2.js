@@ -83,6 +83,35 @@ const secondTransduce = transduce2(
 
 console.log(secondTransduce)
 
+const superReudcer = (trans) => (acc,val)  => {
+  acc = tran(acc,val);
+  return acc
+}
 
 
-const
+const transduce3 = (composeLogic,pushReducer,seed,collection) => {
+  const transformReducer = composeLogic(pushReducer);
+  if(Array.isArray(collection)){
+    return collection.reduce(superReudcer(transformReducer),seed)
+  }
+  else{
+    return [collection].reduce(superReudcer(transformReducer),seed).join('')
+  }
+}
+
+
+
+
+
+const scream = str => `${str}!`;
+
+const word = transduce3(
+  compose$(
+    map$(scream)
+  ),
+  pushReducer,
+  [],
+  12345
+)
+
+console.log(word)
